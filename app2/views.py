@@ -3,5 +3,5 @@ from django.http import HttpResponse
 # Create your views here.
 
 
-def welcome():
-    return HttpResponse("Welcome in the DJango Project")
+def welcome(request):
+    return HttpResponse("<h1>Welcome in the DJango Project</h1>")
