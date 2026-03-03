@@ -25,3 +25,5 @@ def search(request):
 
         message = "You did not provide a search query."
 
+def about(request):
+    return HttpResponse("This is the simple about section")
