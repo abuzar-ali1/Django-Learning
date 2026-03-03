@@ -7,6 +7,7 @@ class Profile(models.Model):
     city =  models.CharField(max_length=50)
     roll  = models.IntegerField()
     marks = models.IntegerField()
+    state = models.CharField(max_length=50)
 
     
      
