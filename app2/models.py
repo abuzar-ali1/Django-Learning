@@ -14,3 +14,9 @@ class Profile(models.Model):
         return self.name
     
      
+
+class HackathonIdea(models.Model):
+    title = models.CharField(max_length=100)
+    core_tech = models.CharField( max_length=100)
+    is_free_entry  = models.BooleanField()
+    difficulty_level = models.IntegerField()
