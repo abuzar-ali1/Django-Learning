@@ -21,3 +21,6 @@ def get_all_hacks(request):
 
 
 
+def filtererd_data(request):
+    data = list(HackathonIdea.objects.filter(is_free_entry = True).values())
+    return JsonResponse({'data' : data})
