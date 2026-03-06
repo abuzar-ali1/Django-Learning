@@ -22,11 +22,9 @@ def filtererd_data(request):
     return JsonResponse({'data' : data})
 
 
-def id_base_data(request):
-    query =  request.GET.get('id')
-    result  = list(HackathonIdea.objects.get('{query}').values())
-    if query:
-        return JsonResponse({'data' : result})
+def id_base_data(request,  id ):
+    result = HackathonIdea.objects.filter(id=id).values().first()
+    if result:
+        return JsonResponse({'data'  : result})
     else:
-
-        message = "You did not provide a search query."
+        return JsonResponse({'error' : 'Idea NOT FOUND!'} , status=404)
