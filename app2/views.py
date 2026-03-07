@@ -27,4 +27,4 @@ def id_base_data(request,  id ):
     if result:
         return JsonResponse({'data'  : result})
     else:
-        return JsonResponse({'error' : 'Idea NOT FOUND!'} , status=404)
+        return JsonResponse({'error' : 'Idea NOT FOUND ! Try again'} , status=404)
