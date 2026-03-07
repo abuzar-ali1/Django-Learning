@@ -4,7 +4,7 @@ from .models import Profile , HackathonIdea
 # Create your views here.
 
 def welcome(request):
-    return HttpResponse("<h1>Welcome in the Django Project</h1>")
+    return HttpResponse("<h1>Welcome in the Home of git Django Project</h1>")
 
 
 def get_all_profiles(request):
