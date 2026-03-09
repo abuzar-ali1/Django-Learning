@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse , JsonResponse
-from .models import Profile , HackathonIdea
+from .models import Profile , HackathonIdea , Student
+from .serializers import StudentSerializer
+from rest_framework.renders import JSONRenderer
 # Create your views here.
 
 def welcome(request):
@@ -28,3 +30,11 @@ def id_base_data(request,  id ):
         return JsonResponse({'data'  : result})
     else:
         return JsonResponse({'error' : 'Idea NOT FOUND ! Try again'} , status=404)
+
+
+
+def student_detail(request):
+    stu  = Student.objects.get(id  = 1)
+    serilizer = StudentSerializer(stu)
+    json_data = JSONResponse().render(serilizer.data)
+    return HttpResponse(json_data , contet_type = 'application/json')
