@@ -36,9 +36,10 @@ def id_base_data(request,  id ):
 def student_detail(request , pk):
     stu  = Student.objects.get(id  = pk)
     serilizer = StudentSerializer(stu )
-    json_data = JSONRenderer().render(serilizer.data)
-    return HttpResponse(json_data , content_type = 'application/json')
-
+    # json_data = JSONRenderer().render(serilizer.data)
+    # return HttpResponse(json_data , content_type = 'application/json')
+    # Simple using of the JsonResponse
+    return JsonResponse(serilizer.data)
 
 # Query set
 def students(request):
@@ -46,3 +47,5 @@ def students(request):
     serilizer = StudentSerializer(stu, many=True)
     json_data = JSONRenderer().render(serilizer.data)
     return HttpResponse(json_data , content_type = 'application/json')
+    # mosltly we use JsonResponse to return a json
+    # return JsonResponse(serilizer.data , safe=False)
