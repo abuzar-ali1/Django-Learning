@@ -32,11 +32,17 @@ def id_base_data(request,  id ):
         return JsonResponse({'error' : 'Idea NOT FOUND ! Try again'} , status=404)
 
 
-
+# an object
 def student_detail(request , pk):
     stu  = Student.objects.get(id  = pk)
-    serilizer = StudentSerializer(stu)
+    serilizer = StudentSerializer(stu )
     json_data = JSONRenderer().render(serilizer.data)
     return HttpResponse(json_data , content_type = 'application/json')
 
 
+# Query set
+def students(request):
+    stu  = Student.objects.all()
+    serilizer = StudentSerializer(stu, many=True)
+    json_data = JSONRenderer().render(serilizer.data)
+    return HttpResponse(json_data , content_type = 'application/json')
