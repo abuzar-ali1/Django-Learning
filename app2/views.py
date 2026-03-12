@@ -3,7 +3,6 @@ from django.http import HttpResponse , JsonResponse
 from .models import Profile , HackathonIdea , Student
 from .serializers import StudentSerializer
 from rest_framework.renderers import JSONRenderer
-from django.http import 
 import io
 # Create your views here.
 
