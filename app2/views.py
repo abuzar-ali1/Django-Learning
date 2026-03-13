@@ -80,8 +80,9 @@ def get_student(request):
         if id is not None:
             stu = Student.objects.get(id)
             serializer = StudentSerializer(stu)
-            return JsonResponse(serializer.data) 
+            json_data = JSONRenderer().render(serializer.data)
+            return HttpResponse(json_data , content_type = 'application/json')    
     stu =  Student.objects.all()        
-    serializer = StudentSerializer(stu)
-    return JsonResponse(serializer.data) 
-        
+    serializer = StudentSerializer(stu , many=True)
+    json_data = JSONRenderer().render(serializer.data)
+    return HttpResponse(json_data , content_type = 'application/json')        

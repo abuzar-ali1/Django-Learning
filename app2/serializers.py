@@ -12,6 +12,6 @@ class StudentSerializer(serializers.Serializer):
 
 
 
-    def create(self , valid_data):
-        return Student.objects.create(**valid_data)
+    # def create(self , valid_data):
+    #     return Student.objects.create(**valid_data)
 
