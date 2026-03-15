@@ -77,7 +77,6 @@ def get_student(request):
         stream = io.BytesIO(json_data)
         python_data = JSONParser().parse(stream)
         id = python_data.get('id' , None)
-        print(id)
         if id is not None:
             stu = Student.objects.get(id=id)
             serializer = StudentSerializer(stu)
@@ -86,4 +85,15 @@ def get_student(request):
     stu =  Student.objects.all()        
     serializer = StudentSerializer(stu , many=True)
     json_data = JSONRenderer().render(serializer.data)
-    return HttpResponse(json_data , content_type = 'application/json')        
+    return HttpResponse(json_data , content_type = 'application/json')     
+    if request.method == 'PUT':
+        json_data = request.body
+        stream = io.BytesIO(json_data)
+        python_data = JSONParser().parse(stream)
+        id = python_data.get('id' , None)
+        stu = Student.objects.get(id=id)
+        serializer = Student.objects.get(stu , data=python_data)
+        if serializer.valid():
+            serializer.save()
+            res = {'msg' : 'Data is successfully Updated'}
+            return JsonResponse(res) 

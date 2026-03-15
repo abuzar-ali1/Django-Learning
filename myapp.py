@@ -37,4 +37,21 @@ def get_data(id = None):
 
 
 
-get_data(3)    
+# get_data(3)    
+
+
+def update_data():
+    data = {
+        'id' : 3,
+        'name' : 'Rahman Ali',
+        'roll' : 1234,
+        'city' : 'KPK'
+    }
+    json_data = json.dumps(data)
+    r = request.put(url = URL_3 , data = json_data)
+    data = r.json()
+    print(data)    
+
+
+
+update_data()
