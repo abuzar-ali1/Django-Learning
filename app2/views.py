@@ -70,7 +70,7 @@ def student_create(request):
             return HttpResponse(json_data , content_type = 'application/json')
             
 
-
+@csrf_exempt
 def get_student(request):
     if request.method == 'GET':
         json_data = request.body
@@ -92,8 +92,10 @@ def get_student(request):
         python_data = JSONParser().parse(stream)
         id = python_data.get('id' , None)
         stu = Student.objects.get(id=id)
-        serializer = Student.objects.get(stu , data=python_data)
+        serializer = Student.objects.get(stu , data=python_data , partial=True)
         if serializer.valid():
             serializer.save()
             res = {'msg' : 'Data is successfully Updated'}
-            return JsonResponse(res) 
+            return JsonResponse(res)         
+        json_data = JSONRenderer().render(serializer.errors)
+        return HttpResponse(json_data , content_type = 'application/json')
