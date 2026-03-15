@@ -44,7 +44,8 @@ def update_data():
     data = {
         'id' : 3,
         'name' : 'Rahman Ali',
-        'city' : 'KPK'
+        'roll' : 1234,
+        'city' : 'KPK',
     }
     json_data = json.dumps(data)
     r = requests.put(url = URL_2 , data = json_data)
