@@ -72,7 +72,6 @@ def student_create(request):
 
 @csrf_exempt
 def get_student(request):
-    # 1. HANDLE GET REQUESTS
     if request.method == 'GET':
         json_data = request.body
         stream = io.BytesIO(json_data)
@@ -84,14 +83,12 @@ def get_student(request):
             serializer = StudentSerializer(stu)
             json_data = JSONRenderer().render(serializer.data)
             return HttpResponse(json_data, content_type='application/json')    
-        
-        # This belongs inside the GET block!
+                    
         stu = Student.objects.all()        
         serializer = StudentSerializer(stu, many=True)
         json_data = JSONRenderer().render(serializer.data)
         return HttpResponse(json_data, content_type='application/json')     
     
-    # 2. HANDLE PUT REQUESTS
     elif request.method == 'PUT':
         json_data = request.body
         stream = io.BytesIO(json_data)
@@ -100,10 +97,8 @@ def get_student(request):
         
         stu = Student.objects.get(id=id)
         
-        # Fix 1: Use StudentSerializer, not Student.objects.get
         serializer = StudentSerializer(stu, data=python_data)
         
-        # Fix 2: It is is_valid(), not valid()
         if serializer.is_valid():
             serializer.save()
             res = {'msg': 'Data is successfully Updated'}
@@ -111,3 +106,12 @@ def get_student(request):
         
         json_data = JSONRenderer().render(serializer.errors)
         return HttpResponse(json_data, content_type='application/json')
+    elif request.method == 'DELETE':
+        json_data = request.body
+        stream = io.BytesIO(json_data)
+        python_data = JSONParser().parse(stream)
+        id = python_data.get('id')
+        stu = Student.objects.get(id=id)
+        stu.delete()
+        res = {'msg': 'Data is successfully Updated'}
+        return JsonResponse(res)         
