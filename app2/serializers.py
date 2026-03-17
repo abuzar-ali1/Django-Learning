@@ -20,6 +20,16 @@ class StudentSerializer(serializers.Serializer):
         instance.save()
         return instance
 
+
+        
+    def validate_roll(self , value):
+        if value > 5000:
+            raise serializers.ValidationError('Seat Full please Enter a roll less than 5000')
+        return value
+
+
+
+        
 class TodoSerializer(serializers.Serializer):
     id =  serializers.IntegerField(read_only=True)
     title = serializers.CharField( max_length=500)
@@ -37,5 +47,7 @@ class TodoSerializer(serializers.Serializer):
         instance.is_done = validated_data.get('is_done' , instance.is_done)
         instance.save()
         return instance
+
+
 
 
