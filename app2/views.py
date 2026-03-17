@@ -111,7 +111,7 @@ def get_student(request):
         id = python_data.get('id')
         stu = Student.objects.get(id=id)
         stu.delete()
-        res = {'msg': 'Data is successfully Updated'}
+        res = {'msg': 'Data is successfully Deleted'}
         return JsonResponse(res)         
 
 
@@ -148,6 +148,17 @@ class MyTodo(View):
         if serializer.is_valid():
             serializer.save()
         return JsonResponse({'data' : serializer.data})    
+    def delete(self , request,  *args, **kwargs):
+        json_data = request.body
+        stream = io.BytesIO(json_data)
+        python_data = JSONParser().parse(stream)
+        id = python_data.get('id')
+        todo = Todo.objects.get(id=id)
+        todo.delete()
+        res = {'msg': 'Data is successfully Deleted'}
+        return JsonResponse(res)        
+
+
 
 
 

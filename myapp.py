@@ -69,17 +69,17 @@ def update_data():
 
 
 
-update_data()
+# update_data()
 
 
 
 def delete_data():
     data = { 'id' : 3 }
     json_data = json.dumps(data)
-    r = requests.delete(url = URL_2 , data = json_data)
+    r = requests.delete(url = URL , data = json_data)
     data = r.json()
     print(data)    
 
 
 
-# delete_data()
+delete_data()
