@@ -95,11 +95,8 @@ def get_student(request):
         stream = io.BytesIO(json_data)
         python_data = JSONParser().parse(stream)
         id = python_data.get('id', None)
-        
         stu = Student.objects.get(id=id)
-        
         serializer = StudentSerializer(stu, data=python_data)
-        
         if serializer.is_valid():
             serializer.save()
             res = {'msg': 'Data is successfully Updated'}
@@ -132,6 +129,30 @@ class MyTodo(View):
         if serializer.is_valid():
             serializer.save()
         return JsonResponse({'Data' : serializer.data})
+    def get(self , request,  *args, **kwargs):
+        json_data = request.body
+        stream = io.BytesIO(json_data)
+        python_data =  JSONParser().parse(stream)
+        # serializer = TodoSerializer(data=python_data)  also learned that we dont need this at this time 
+        id =  python_data.get('id')
+        todo = Todo.objects.get(id=id)
+        serializer = TodoSerializer(todo)
+        return JsonResponse({'data' : serializer.data})    
+    def put(self , request,  *args, **kwargs):
+        json_data = request.body
+        stream = io.BytesIO(json_data)
+        python_data =  JSONParser().parse(stream)
+        id = python_data.get('id')
+        todo = Todo.objects.get(id=id)
+        serializer = TodoSerializer(todo,  data=python_data , partial=True)
+        if serializer.is_valid():
+            serializer.save()
+        return JsonResponse({'data' : serializer.data})    
+
+
+
+         
+    
 
 
 

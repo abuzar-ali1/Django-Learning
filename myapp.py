@@ -22,11 +22,11 @@ import json
 # print(data)
 
 
-URL = 'http://127.0.0.1:8000/todos/'
+URL = 'http://127.0.0.1:8000/todo/'
 def add_data():
     data = {
-    'title' : 'Younis Ali',
-    'desc' : 'karachi',
+    'title' : 'Studying',
+    'desc' : 'sssssssssssssssssssssssssssszzo please do some thing best ',
     'is_done' : True,
     }
     json_data = json.dumps(data)
@@ -36,17 +36,17 @@ def add_data():
 
 
 
-add_data()
+# add_data()
 
 URL_2 = "http://127.0.0.1:8000/studentapi/"
 
 
-def get_data(id = None):
-    data = {}
-    if id is not None:
-        data = {'id' : id}
+def get_data(id):
+    # data = {}
+    # if id is not None:
+    data = {'id' : id}
     json_data = json.dumps(data)
-    r = requests.get(url = URL_2 , data = json_data)
+    r = requests.get(url = URL , data = json_data)
     data = r.json()
     print(data) 
 
@@ -58,18 +58,17 @@ def get_data(id = None):
 def update_data():
     data = {
         'id' : 3,
-        'name' : 'Rahman Ali',
-        'roll' : 1234,
-        'city' : 'KPK',
+        'title' : 'Rahman Ali',
+        'is_done' : True
     }
     json_data = json.dumps(data)
-    r = requests.put(url = URL_2 , data = json_data)
+    r = requests.put(url = URL , data = json_data)
     data = r.json()
     print(data)    
 
 
 
-# update_data()
+update_data()
 
 
 
