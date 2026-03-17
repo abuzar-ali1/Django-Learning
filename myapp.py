@@ -3,24 +3,33 @@ import json
 
 # # URL = "http://127.0.0.1:8000/stucreate/"
 
-# # data = {
-# #     'name' : 'Younis Ali',
-# #     'roll' : 3478,
-# #     'city' : 'karachi'
-# # }
+# data = {
+#     'name' : 'Younis Ali',
+#     'roll' : 3478,
+#     'city' : 'karachi'
+# }
 
 
 
-# # json_data = json.dumps(data)
+# json_data = json.dumps(data)
 
-# # r = requests.post(url = URL , data = json_data)
+# r = requests.post(url = URL , data = json_data)
 
 
 
-# # data = r.json()
+# data = r.json()
 
-# # print(data)
+# print(data)
 
+def add_data():
+    data = {
+    'title' : 'Younis Ali',
+    'desc' : 'karachi'
+    }
+    json_data = json.dumps(data)
+    r = requests.create(url = URL data= json_data)
+    data = r.json()
+    print(data)
 
 
 URL_2 = "http://127.0.0.1:8000/studentapi/"
