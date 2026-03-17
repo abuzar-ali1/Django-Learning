@@ -25,8 +25,8 @@ URL = "http://127.0.0.1:8000/stucreate/"
 # URL = 'http://127.0.0.1:8000/todo/'
 def add_data():
     data = {
-    'name' : 'Sumish',
-    'city' : 'Sukkur',
+    'name' : 'Abuzar',
+    'city' : 'lahore',
     'roll' : 2000,
     }
     json_data = json.dumps(data)

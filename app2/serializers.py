@@ -1,12 +1,17 @@
 from rest_framework import serializers
 from .models import Student , Todo
 
+# Validators
 
+def start_with_a(value):
+    if value[0].lower() != 'a':
+        raise serializers.ValidationError('Name shoulbe Start with A')
+    return value    
 
 
 class StudentSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)  
-    name  = serializers.CharField( max_length=50) 
+    name  = serializers.CharField( max_length=50 , validators=[start_with_a]) 
     roll = serializers.IntegerField()
     city = serializers.CharField(max_length=50)    
 
@@ -21,12 +26,20 @@ class StudentSerializer(serializers.Serializer):
         return instance
 
 
-        
+
     def validate_roll(self , value):
         if value > 5000:
             raise serializers.ValidationError('Seat Full please Enter a roll less than 5000')
         return value
 
+
+    def validate(self , data):
+        nm = data.get('name')
+        ct = data.get('city')
+
+        if nm.lower() == 'abuzar' and ct.lower() != 'lahore' :
+            raise serializers.ValidationError('abuzar must be form Lahore')
+        return data    
 
 
         
