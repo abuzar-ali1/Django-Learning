@@ -40,8 +40,7 @@ class Student(models.Model):
 
 
 class Todo(models.Model):
-    id =  models.IntegerField(read_only=True)
     title = models.CharField( max_length=500)
     desc = models.CharField( max_length=1000)
-    isDone =  models.BooleanField()
+    is_done =  models.BooleanField()
 

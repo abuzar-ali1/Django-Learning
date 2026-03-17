@@ -24,9 +24,9 @@ class TodoSerializer(serializers.Serializer):
     id =  serializers.IntegerField(read_only=True)
     title = serializers.CharField( max_length=500)
     desc = serializers.CharField( max_length=1000)
-    isDone =  serializer.BooleanField()
+    is_done =  serializers.BooleanField()
 
 
     def create(self , valid_data):
         return Todo.objects.create(**valid_data)
-        
+

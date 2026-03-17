@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views 
+from .views import MyTodo
 
 urlpatterns = [
     path('api/profiles/', views.get_all_profiles),
@@ -10,8 +11,8 @@ urlpatterns = [
     path('stuinfo/<int:pk>' , views.student_detail ),
     path('stuinfo/' , views.students),
     path('stucreate/' , views.student_create),
-    path('studentapi/' , views.get_student)
-
+    path('studentapi/' , views.get_student),
+    path('todos/' , MyTodo.as_view())
 
     # ... your other urls
 ]

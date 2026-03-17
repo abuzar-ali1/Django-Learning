@@ -21,16 +21,22 @@ import json
 
 # print(data)
 
+
+URL = 'http://127.0.0.1:8000/todos/'
 def add_data():
     data = {
     'title' : 'Younis Ali',
-    'desc' : 'karachi'
+    'desc' : 'karachi',
+    'is_done' : True,
     }
     json_data = json.dumps(data)
-    r = requests.create(url = URL data= json_data)
+    r = requests.post(url = URL ,  data= json_data)
     data = r.json()
     print(data)
 
+
+
+add_data()
 
 URL_2 = "http://127.0.0.1:8000/studentapi/"
 
@@ -76,4 +82,4 @@ def delete_data():
 
 
 
-delete_data()
+# delete_data()
