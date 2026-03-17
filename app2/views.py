@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse , JsonResponse
 from django.views import View
-from .models import Profile , HackathonIdea , Student
+from .models import Profile , HackathonIdea , Student , Todo
 from .serializers import StudentSerializer , TodoSerializer
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
@@ -117,7 +117,12 @@ def get_student(request):
         res = {'msg': 'Data is successfully Updated'}
         return JsonResponse(res)         
 
-@csrf_exempt
+
+def todos(request):
+    data = list(Todo.objects.values())
+    return JsonResponse({'data' : data})
+
+
 class MyTodo(View):
     def post(self , request,  *args, **kwargs):
         json_data = request.body
@@ -126,7 +131,7 @@ class MyTodo(View):
         serializer = TodoSerializer(data=python_data)
         if serializer.is_valid():
             serializer.save()
-        return JsonResponse({'Data' : seriliazer.data})
+        return JsonResponse({'Data' : serializer.data})
 
 
 

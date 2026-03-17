@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views 
 from .views import MyTodo
+from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
     path('api/profiles/', views.get_all_profiles),
@@ -12,7 +13,9 @@ urlpatterns = [
     path('stuinfo/' , views.students),
     path('stucreate/' , views.student_create),
     path('studentapi/' , views.get_student),
-    path('todos/' , MyTodo.as_view())
+    path('todo/' , csrf_exempt(views.MyTodo.as_view())),
+    path('todos/' , views.todos),
+
 
     # ... your other urls
 ]
