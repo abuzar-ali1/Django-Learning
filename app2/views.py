@@ -144,7 +144,7 @@ class MyTodo(View):
         python_data =  JSONParser().parse(stream)
         id = python_data.get('id')
         todo = Todo.objects.get(id=id)
-        serializer = TodoSerializer(todo,  data=python_data , partial=True)
+        serializer = TodoSerializer(todo,  data=python_data)
         if serializer.is_valid():
             serializer.save()
         return JsonResponse({'data' : serializer.data})    

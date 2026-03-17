@@ -57,8 +57,9 @@ def get_data(id):
 
 def update_data():
     data = {
-        'id' : 3,
-        'title' : 'Rahman Ali',
+        'id' : 5,
+        'title' : 'Updated Method',
+        'desc' : 'this is updated desc from the put method ',
         'is_done' : True
     }
     json_data = json.dumps(data)
