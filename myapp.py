@@ -26,7 +26,7 @@ URL = "http://127.0.0.1:8000/stuapi/"
 # URL = 'http://127.0.0.1:8000/todo/'
 def add_data():
     data = {
-    'name' : 'Abuzar',
+    'name' : 'buzar',
     'email' : 'abuzar@gmail.com',
     'city' : 'lahore',
     }
@@ -37,7 +37,7 @@ def add_data():
 
 
 
-# add_data()
+add_data()
 
 
 
@@ -82,4 +82,4 @@ def delete_data():
 
 
 
-delete_data()
+# delete_data()
