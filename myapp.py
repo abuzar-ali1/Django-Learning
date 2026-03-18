@@ -52,15 +52,15 @@ def get_data(id = None):
 
 
 
-get_data()    
+# get_data()    
 
 
 def update_data():
     data = {
-        'id' : 5,
-        'title' : 'Updated Method',
-        'desc' : 'this is updated desc from the put method ',
-        'is_done' : True
+        'id' : 2,
+        'city' : 'Kandhkot',
+        # 'desc' : 'this is updated desc from the put method ',
+        # 'is_done' : True
     }
     json_data = json.dumps(data)
     r = requests.put(url = URL , data = json_data)
@@ -74,7 +74,7 @@ def update_data():
 
 
 def delete_data():
-    data = { 'id' : 3 }
+    data = { 'id' : 2 }
     json_data = json.dumps(data)
     r = requests.delete(url = URL , data = json_data)
     data = r.json()
@@ -82,4 +82,4 @@ def delete_data():
 
 
 
-# delete_data()
+delete_data()

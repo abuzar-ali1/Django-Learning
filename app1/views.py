@@ -84,7 +84,7 @@ class StudentAPI(View):
         student_id = python_data.get('id', None)
         
         stu = Student.objects.get(id=student_id)
-        serializer = StudentSerializer(stu, data=python_data)
+        serializer = StudentSerializer(stu, data=python_data , partial=True)
         
         if serializer.is_valid():
             serializer.save()
