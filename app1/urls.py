@@ -7,6 +7,7 @@ urlpatterns = [
     path('api/greeting/<username>/' , views.greeting),
     path('api/search/' , views.search),
     path('about/' , views.about),
+    path('stuapi/', views.StudentAPI.as_view(), name='student_api'),
 ]
 
 

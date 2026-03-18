@@ -7,4 +7,4 @@ from .models import Student
 
 @admin.register(Student)    
 class AdminStudent(admin.ModelAdmin):
-    list_display = ('name' , 'email' , 'city')
+    list_display = ('id' , 'name' , 'email' , 'city')

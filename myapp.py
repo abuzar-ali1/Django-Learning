@@ -1,7 +1,7 @@
 import requests 
 import json
 
-URL = "http://127.0.0.1:8000/stucreate/"
+# URL = "http://127.0.0.1:8000/stucreate/"
 
 # data = {
 #     'name' : 'Younis Ali',
@@ -21,13 +21,14 @@ URL = "http://127.0.0.1:8000/stucreate/"
 
 # print(data)
 
+URL = "http://127.0.0.1:8000/stuapi/"
 
 # URL = 'http://127.0.0.1:8000/todo/'
 def add_data():
     data = {
     'name' : 'Abuzar',
+    'email' : 'abuzar@gmail.com',
     'city' : 'lahore',
-    'roll' : 2000,
     }
     json_data = json.dumps(data)
     r = requests.post(url = URL ,  data= json_data)
@@ -36,15 +37,14 @@ def add_data():
 
 
 
-add_data()
-
-URL_2 = "http://127.0.0.1:8000/studentapi/"
+# add_data()
 
 
-def get_data(id):
-    # data = {}
-    # if id is not None:
-    data = {'id' : id}
+
+def get_data(id = None):
+    data = {}
+    if id is not None:
+        data = {'id' : id}
     json_data = json.dumps(data)
     r = requests.get(url = URL , data = json_data)
     data = r.json()
@@ -52,7 +52,7 @@ def get_data(id):
 
 
 
-# get_data(3)    
+get_data()    
 
 
 def update_data():
